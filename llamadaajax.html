@@ -15,7 +15,7 @@
         function callbackÉxito(data) {
             console.log("Datos recibidos:", data);
             //TABLA:
-            let tabla = "<table border='1'><tr><th>ID</th><th>Nombre</th><th>Email</th></tr>";
+            let tabla = "<br><table border='1'><tr><th>ID</th><th>Nombre</th><th>Email</th></tr>";
             data.forEach(usuario => {
                 tabla += `<tr><td>${usuario.id}</td><td>${usuario.name}</td><td>${usuario.email}</td></tr>`;
             });

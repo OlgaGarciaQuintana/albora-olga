@@ -8,9 +8,13 @@
 </head>
 
 <body>
+    <button id="miBoton">Haz click aquí</button>
     <script>
         mifuncion = function () {
             console.log("Esto se ejecuta después de 2 segundos");
+        }
+        function misaludo(){
+            console.log("Hola, ¿cómo estás?");
         }
         //document ready
         document.addEventListener("DOMContentLoaded", function () {
@@ -19,6 +23,9 @@
             console.log("Inicio");
 
             setTimeout(mifuncion, 2000); //2 segundos
+
+            //cuando lo presiones, se ejecutara, no con el timeout
+            document.getElementById("miBoton").addEventListener("click", misaludo);
 
             console.log("Fin");
 

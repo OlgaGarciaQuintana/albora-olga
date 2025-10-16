@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function callbackÉxito(data) {
+            console.log("Datos recibidos:", data);
+        }
+
+        function callbackError(mensaje) {
+            console.error("Error en la petición:", mensaje);
+        }
+
+        //espera a que el DOM esté listo
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            $.ajax({
+                url: "https://jsonplaceholder.typicode.com/users",
+                method: "GET",
+                dataType: "json",
+                success: function(data) {
+                    //si la petición es exitosa, muestra los datos en la consola
+                    callbackÉxito(data);
+                },
+                error: function(jqXHR, textStatus, error) {
+                    //en caso de error, llamamos al callback de error
+                    const mensaje = `Error en la petición: ${textStatus}, ${errorThrown}`;
+                    callbackÉxito(mensaje);
+                }
+            });
+
+            console.log("Petición AJAX enviada...Yo acabo.");
+        });
+    </script>
+</body>
+</html>

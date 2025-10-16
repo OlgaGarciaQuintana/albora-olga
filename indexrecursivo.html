@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Recursividad</h1>
+    <pre id="output"></pre>
+    <script>
+        // document ready
+        document.addEventListener("DOMContentLoaded", function() {
+            function contarRegresivo(numero){
+                if(numero <= 0){
+                    document.getElementById("output").innerText += "¡Despegue!\n";
+                }else{
+                    document.getElementById("output").innerText += numero + "\n";
+                    contarRegresivo(numero - 1); //llamada recursiva
+                    document.getElementById("output").innerText += numero + "\n";
+                }
+            }
+
+            //document ready
+            document.addEventListener("DOMContentLoaded", function() {
+                contarRegresivo(15);
+            });
+        });
+    </script>
+</body>
+</html>

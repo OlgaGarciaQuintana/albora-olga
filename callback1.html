@@ -6,6 +6,21 @@
     <title>Callbacks en JavaScript (MUY IMPORTANTE)</title>
 </head>
 <body>
-    
+    <script>
+        mifuncion = function(){
+            console.log("Esto se ejecuta después de 2 segundos");
+        }
+        //document ready
+        document.addEventListener("DOMContentLoaded", function() {
+
+
+            console.log("Inicio");
+
+            setTimeout(mifuncion, 2000); //2000 milisegundos = 2 segundos
+
+            console.log("Fin");
+
+        });
+    </script>
 </body>
 </html>

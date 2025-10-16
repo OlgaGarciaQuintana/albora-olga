@@ -6,6 +6,8 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>Llamada AJAX con jQuery</h1>
+    <div id="output"></div>
     <script>
 
         function callbackÉxito(data) {
@@ -26,6 +28,12 @@
                 success: function(data) {
                     //si la petición es exitosa, muestra los datos en la consola
                     callbackÉxito(data);
+
+
+                    //AQUI NO ESTAN LOS DATOS Y NO SE PUEDE PINTAR LA TABLA
+
+
+
                 },
                 error: function(jqXHR, textStatus, error) {
                     //en caso de error, llamamos al callback de error

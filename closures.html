@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Cierre (CLosures) en JavaScript</h1>
+    <pre id="output"></pre>
+    <script>
+        function crearContador(){
+            let contador = 0;
+            return function(){
+                contador++;
+                return contador;
+            };
+        }
+
+        const contar = crearContador();
+        document.getElementById("output").innerText += "Contador 1: " + contar() + "\n";
+        document.getElementById("output").innerText += "Contador 1: " + contar() + "\n";
+        const contar2 = crearContador();
+        document.getElementById("output").innerText += "Contador 2: " + contar2() + "\n";
+        document.getElementById("output").innerText += "Contador 1: " + contar() + "\n";
+    </script>
+</body>
+</html>

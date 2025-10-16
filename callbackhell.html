@@ -27,9 +27,13 @@
                 method: "GET",
                 dataType: "json",
                 success: function (data) {
+                    //ordenar los usuarios por id
+                    console.log("Datos de usuarios recibidos: ", data);
+                    data.sort((a, b) => a.id - b.id);
                     // Si la petición es exitosa, se llama al callback de éxito
                     console.log("Datos recibidos:", data);
                     // construir una tabla HTML con los datos recibidos
+                    //pendiente ordenar
                     let tabla = "";
                     data.forEach(usuario => {
 
@@ -40,15 +44,15 @@
                                 url: "https://jsonplaceholder.typicode.com/user/" + usuarioid + "/posts",
                                 method: "GET",
                                 dataType: "json",
-                                success: function (data) {
+                                success: function (dataPosts) {
                                     // Si la petición es exitosa, se llama al callback de éxito
-                                    console.log("Datos recibidos:", data);
+                                    console.log("Datos recibidos:", dataPosts);
                                     // construir una tabla HTML con los datos recibidos
                                     tabla += "<br><br>";
                                     tabla += `<b>USUARIO: ${usuario.id} - ${usuario.name} - ${usuario.email}</b><br>`;
                                     
                                     tabla += "<ol>";
-                                    data.forEach(post => {                                        
+                                    dataPosts.forEach(post => {                                        
                                         tabla += `<li><b>${post.title}</b></li>`;
                                         tabla += ` ${post.body} <br>`;
                                     });
@@ -56,7 +60,7 @@
 
 
                                     // aqui si que estan los datos   
-                                    console.log("Datos procesados y tabla construida.", data);
+                                    console.log("Datos procesados y tabla construida.", dataPosts);
                                     document.getElementById("output").innerHTML += tabla;
                                 },
                                 error: function (jqXHR, textStatus, errorThrown) {

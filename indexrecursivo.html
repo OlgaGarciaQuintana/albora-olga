@@ -10,7 +10,6 @@
     <pre id="output"></pre>
     <script>
         // document ready
-        document.addEventListener("DOMContentLoaded", function() {
             function contarRegresivo(numero){
                 if(numero <= 0){
                     document.getElementById("output").innerText += "¡Despegue!\n";
@@ -21,11 +20,21 @@
                 }
             }
 
+            // factorial
+            function factorial(n){
+                if(n === 0 || n === 1){
+                    return 1;
+                }else{
+                    return n * factorial(n - 1);
+                }
+            }
+
             //document ready
             document.addEventListener("DOMContentLoaded", function() {
                 contarRegresivo(15);
+                document.getElementById("output").innerText += "El factorial de 5 es: " + factorial(5) + "\n";
+                document.getElementById("output").innerText += "El factorial de 10 es: " + factorial(10) + "\n";
             });
-        });
     </script>
 </body>
 </html>

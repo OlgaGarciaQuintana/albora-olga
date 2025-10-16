@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <h1>Llamada AJAX con jQuery</h1>
     <div id="output"></div>
@@ -12,6 +14,13 @@
 
         function callbackÉxito(data) {
             console.log("Datos recibidos:", data);
+            //TABLA:
+            let tabla = "<table border='1'><tr><th>ID</th><th>Nombre</th><th>Email</th></tr>";
+            data.forEach(usuario => {
+                tabla += `<tr><td>${usuario.id}</td><td>${usuario.name}</td><td>${usuario.email}</td></tr>`;
+            });
+            tabla += "</table>";
+            document.getElementById("output").innerHTML += tabla;
         }
 
         function callbackError(mensaje) {
@@ -19,32 +28,43 @@
         }
 
         //espera a que el DOM esté listo
-        document.addEventListener("DOMContentLoaded", function() {
-            
+        document.addEventListener("DOMContentLoaded", function () {
+
             $.ajax({
                 url: "https://jsonplaceholder.typicode.com/users",
                 method: "GET",
                 dataType: "json",
-                success: function(data) {
+                success: function (data) {
                     //si la petición es exitosa, muestra los datos en la consola
                     callbackÉxito(data);
+                    console.log("Datos procesados y tabla construida.", data);
 
-
-                    //AQUI NO ESTAN LOS DATOS Y NO SE PUEDE PINTAR LA TABLA
-
-
-
+                    //aqui si estan los datos y se puede pintar la tabla
                 },
-                error: function(jqXHR, textStatus, error) {
+                error: function (jqXHR, textStatus, error) {
                     //en caso de error, llamamos al callback de error
                     const mensaje = `Error en la petición: ${textStatus}, ${errorThrown}`;
                     callbackÉxito(mensaje);
                 }
             });
 
+            $.ajax({
+                url: "https://jsonplaceholder.typicode.com/users",
+                method: "GET",
+                dataType: "json",
+                success: callbackÉxito,
+                error: function (jqXHR, textStatus, error) {
+                    //en caso de error, llamamos al callback de error
+                    const mensaje = `Error en la petición: ${textStatus}, ${errorThrown}`;
+                    callbackÉxito(mensaje);
+                }
+            });
+
+            //AQUI NO ESTAN LOS DATOS Y NO SE PUEDE PINTAR LA TABLA
             console.log("Petición AJAX enviada...Yo acabo.");
         });
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
+
 </html>

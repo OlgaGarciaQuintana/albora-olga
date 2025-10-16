@@ -7,6 +7,9 @@
 </head>
 <body>
     <h1>Cierre (Closures) en JavaScript</h1>
+    <! -- dos botones de contador -->
+    <button id="btnContar1">Contador 1</button>
+    <button id="btnContar2">Contador 2</button>
     <pre id="output"></pre>
     <script>
 
@@ -18,12 +21,17 @@
             };
         }
 
-        const contar = crearContador();
-        document.getElementById("output").innerText += "Contador 1: " + contar() + "\n";
-        document.getElementById("output").innerText += "Contador 1: " + contar() + "\n";
-        const contar2 = crearContador();
-        document.getElementById("output").innerText += "Contador 2: " + contar2() + "\n";
-        document.getElementById("output").innerText += "Contador 2: " + contar2() + "\n";
+        //que se ejecuta cuando el DOM está listo
+        const contador1 = crearContador();
+        const contador2 = crearContador();
+        document.getElementById("btnContar1").addEventListener("click", function(){
+            const valor = contador1();
+            document.getElementById("output").innerText += "Contador 1: " + valor + "\n";
+        });
+        document.getElementById("btnContar2").addEventListener("click", function(){
+            const valor = contador2();
+            document.getElementById("output").innerText += "Contador 2: " + valor + "\n";
+        });
 
     </script>
 </body>

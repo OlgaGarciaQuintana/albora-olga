@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Llamada AJAX con jQuery</h1>
+    <div id="output"></div>
+    <script>
+
+        function callbackError(mensaje) {
+            console.error("Error en la petición:", mensaje);
+        }
+
+        //espera a que el DOM esté listo
+        document.addEventListener("DOMContentLoaded", function () {
+
+
+
+            $.ajax({
+                url: "https://jsonplaceholder.typicode.com/users",
+                method: "GET",
+                dataType: "json",
+                success: function (data) {
+                    //si la petición es exitosa, muestra los datos en la consola
+                    console.log("Datos recibidos:", data);
+                    //TABLA:
+                    let tabla = "<table border='1'><tr><th>ID</th><th>Nombre</th><th>Email</th></tr>";
+                    data.forEach(usuario => {
+                        tabla += `<tr><td>${usuario.id}</td><td>${usuario.name}</td><td>${usuario.email}</td></tr>`;
+
+                        (function (tabla, usuarioid) {
+                            $.ajax({
+                                url: "https://jsonplaceholder.typicode.com/users/" + usuarioid + "/posts",
+                                method: "GET",
+                                dataType: "json",
+                                success: function (data) {
+                                    //si la petición es exitosa, muestra los datos en la consola
+                                    console.log("Datos recibidos: ", data);
+                                    //TABLA:
+                                    let tabla = "<br><table border='1'><tr><th>ID</th><th>Nombre</th><th>Email</th></tr>";
+                                    data.forEach(usuario => {
+                                        tabla += `<tr><td>${usuario.id}</td><td>${usuario.name}</td><td>${usuario.email}</td></tr>`;
+                                    });
+                                    tabla += "</table>";
+                                    document.getElementById("output").innerHTML += tabla;
+                                },
+                                error: function (jqXHR, textStatus, error) {
+                                    //en caso de error, llamamos al callback de error
+                                    const mensaje = `Error en la petición: ${textStatus}, ${errorThrown}`;
+                                    callbackError(mensaje);
+                                }
+                            });
+                        })(tabla, usuario.id);
+                    });
+
+                },
+                error: function (jqXHR, textStatus, error) {
+                    const mensaje = `Error en la petición: ${textStatus}, ${errorThrown}`;
+                    callbackError(mensaje);
+                }
+            });
+
+        });

@@ -44,7 +44,7 @@
                 error: function (jqXHR, textStatus, error) {
                     //en caso de error, llamamos al callback de error
                     const mensaje = `Error en la petición: ${textStatus}, ${errorThrown}`;
-                    callbackÉxito(mensaje);
+                    callbackError(mensaje);
                 }
             });
 
